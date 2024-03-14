@@ -1,0 +1,8 @@
+# Sitemate backend challenge
+
+This is a simple REST API server and client to log issues.
+
+Run these 2 commands in separate terminals:
+
+> node server.js
+> node client.js

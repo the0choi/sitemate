@@ -3,6 +3,7 @@ const prompt = require('prompt');
 
 prompt.start();
 
+// Helper function to prepare the options needed for making an HTTP request
 function getRequestOptions(path, method, data) {
     return {
         hostname: 'localhost',
@@ -16,6 +17,7 @@ function getRequestOptions(path, method, data) {
     };
 }
 
+// Retrieve user input based on a provided question
 function getInput(question) {
     return new Promise((resolve, reject) => {
         prompt.get([question], (err, result) => {
@@ -25,6 +27,7 @@ function getInput(question) {
     });
 }
 
+// Performs the HTTP request handling for sending/receiving response
 async function request(options, data = '') {
     return new Promise((resolve, reject) => {
         const req = http.request(options, (res) => {
@@ -48,6 +51,8 @@ async function request(options, data = '') {
         req.end();
     });
 }
+
+// Below functions perform CRUD functionality through server requests
 
 async function createIssue() {
     const title = await getInput('Title');
@@ -79,6 +84,7 @@ async function deleteIssue() {
     await request(options);
 }
 
+// Main function to facilitate the user's choice
 async function main() {
     console.log("Choose an operation:\n1: Create Issue\n2: Read Issues\n3: Update Issue\n4: Delete Issue");
     const choice = await getInput('Choice');
